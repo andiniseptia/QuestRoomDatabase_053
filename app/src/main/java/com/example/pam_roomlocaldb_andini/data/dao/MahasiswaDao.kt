@@ -19,4 +19,13 @@ interface MahasiswaDao {
     //Untuk membungkus data
     fun getAllMahasiswa(): Flow<List<Mahasiswa>>
 
+    //Query untuk mendapat data berdasarkan nim mahasiswa
+    @Query("SELECT * FROM mahasiswa WHERE nim = :nim")
+    fun getMahasiswa(nim: String) : Flow<Mahasiswa>
+
+    @Delete
+    suspend fun deleteMahasiswa(mahasiswa: Mahasiswa)
+
+    @Update
+    suspend fun updateMahasiswa(mahasiswa: Mahasiswa)
 }
