@@ -14,19 +14,5 @@ abstract class KrsDatabase : RoomDatabase() {
     // Mendefinisikan fungsi untuk mengakses data Mahasiswa
     abstract fun mahasiswaDao(): MahasiswaDao
 
-    companion object {
-        @Volatile // Memastikan bahwa nilai variable instance selalu sama di semua thread
-        private var Instance: KrsDatabase? = null
- 
-        fun getDatabase(context: Context): KrsDatabase {
-            return (Instance ?: synchronized(this) {
-                Room.databaseBuilder(
-                    context,
-                    KrsDatabase::class.java, // Class database
-                    "KrsDatabase" //Nama database
-                )
-                    .build().also { Instance = it }
-            })
-        }
-    }
+
 }
